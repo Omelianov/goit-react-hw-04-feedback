@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.btn {
+  border-radius: 3px;
+  background-color: rgba(63, 191, 227, 0.355);
+  border: 1px solid rgb(9, 33, 49);
+  margin-left: 10px;
+}
+.btn:hover {
+  background-color: rgba(63, 191, 227, 0.858);
+}

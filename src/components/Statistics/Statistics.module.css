@@ -1,0 +1,21 @@
+.title {
+  font-size: 20px;
+}
+.list {
+  padding-left: 10px;
+  margin-top: 0;
+}
+
+.listItem {
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  margin-top: 5px;
+  font-size: 16px;
+  color: black;
+}
+
+.listItem:last-child {
+  font-weight: 600;
+  margin-top: 10px;
+}
