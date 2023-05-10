@@ -19,5 +19,8 @@ export const Statistics = ({ title, good, neutral, bad, total, positivePercentag
 
 Statistics.propTypes = {
     positivePercentage: PropTypes.func.isRequired,
-    total: PropTypes.func.isRequired
+    total: PropTypes.func.isRequired,
+    good: PropTypes.number.isRequired,
+    neutral: PropTypes.number.isRequired,
+    bad: PropTypes.number.isRequired,
 }

@@ -30,20 +30,19 @@ countTotalFeedback = () => {
 
   render() {
     const { good, neutral, bad } = this.state;
+    const feedbackOptions = { good, neutral, bad };
 
     return (
       <>
         <Section title={'Please leave feedback'} children>
-        <FeedbackOptions options={this.state} onLeaveFeedback={this.addFeedback}/>
-{this.countTotalFeedback() === 0 ? <Notification message={'There is no feedback'}/> : <Statistics 
+        <FeedbackOptions options= {feedbackOptions}onLeaveFeedback={this.addFeedback}/>
+{this.countTotalFeedback() === 0 ? (<Notification message={'There is no feedback'}/> )
+      : (<Statistics 
             title={'Statistics'}
-            good={good}
-            neutral={neutral}
-            bad={bad}
+            {...feedbackOptions}
             total={this.countTotalFeedback}
             positivePercentage={this.countPositiveFeedbackPercentage}
-          />}
-           
+          />)}
         </Section>
       </>
     );
