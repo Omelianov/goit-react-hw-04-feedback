@@ -1,51 +1,49 @@
-import { Component } from 'react';
+import React, { useState } from 'react';
 import { Section } from './Section/Section';
 import { Statistics } from './Statistics/Statistics';
 import {Notification} from './Notification/Notification'
 import {FeedbackOptions} from './FeedbackOptions/FeedbackOptions'
 
-class App extends Component {
-  state = {
+const App =() => {
+ const [feedback, setFeedback] = useState  ({
     good: 0,
     neutral: 0,
     bad: 0,
-  };
+  });
 
 
-  addFeedback = state => {
-    this.setState(prevState => ({
-      [state]: prevState[state] + 1,
+  const addFeedback = (type) => {
+    setFeedback((prevFeedback) => ({
+     ...prevFeedback, [type]: prevFeedback[type] + 1,
     }));
   };
     
   
-
-  countPositiveFeedbackPercentage = () => {
-    return parseInt((this.state.good / this.countTotalFeedback()) * 100);
+  const countPositiveFeedbackPercentage = () => {
+    const totalFeedback = countTotalFeedback();
+    return parseInt((feedback.good / totalFeedback) * 100);
   };
 
-countTotalFeedback = () => {
-    return Object.values(this.state).reduce((acc, val) => acc + val, 0);
+const countTotalFeedback = () => {
+    return Object.values(feedback).reduce((acc, val) => acc + val, 0);
   };
 
-  render() {
-    const { good, neutral, bad } = this.state;
+    const { good, neutral, bad } = feedback;
     const feedbackOptions = { good, neutral, bad };
 
     return (
       <>
         <Section title={'Please leave feedback'} children>
-        <FeedbackOptions options= {feedbackOptions}onLeaveFeedback={this.addFeedback}/>
-{this.countTotalFeedback() === 0 ? (<Notification message={'There is no feedback'}/> )
+        <FeedbackOptions options= {feedbackOptions}onLeaveFeedback={addFeedback}/>
+{countTotalFeedback() === 0 ? (<Notification message={'There is no feedback'}/> )
       : (<Statistics 
             title={'Statistics'}
             {...feedbackOptions}
-            total={this.countTotalFeedback}
-            positivePercentage={this.countPositiveFeedbackPercentage}
+            total={countTotalFeedback}
+            positivePercentage={countPositiveFeedbackPercentage}
           />)}
         </Section>
       </>
     );
   }
-}
 export default App;
