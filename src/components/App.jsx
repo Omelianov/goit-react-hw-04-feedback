@@ -4,7 +4,7 @@ import { Statistics } from './Statistics/Statistics';
 import {Notification} from './Notification/Notification'
 import {FeedbackOptions} from './FeedbackOptions/FeedbackOptions'
 
-const App =() => {
+const App = () => {
  const [feedback, setFeedback] = useState  ({
     good: 0,
     neutral: 0,
@@ -17,7 +17,7 @@ const App =() => {
      ...prevFeedback, [type]: prevFeedback[type] + 1,
     }));
   };
-    
+       
   
   const countPositiveFeedbackPercentage = () => {
     const totalFeedback = countTotalFeedback();
@@ -28,19 +28,16 @@ const countTotalFeedback = () => {
     return Object.values(feedback).reduce((acc, val) => acc + val, 0);
   };
 
-    const { good, neutral, bad } = feedback;
-    const feedbackOptions = { good, neutral, bad };
-
     return (
       <>
         <Section title={'Please leave feedback'} children>
-        <FeedbackOptions options= {feedbackOptions}onLeaveFeedback={addFeedback}/>
+        <FeedbackOptions options= {Object.keys(feedback)}onLeaveFeedback={addFeedback}/>
 {countTotalFeedback() === 0 ? (<Notification message={'There is no feedback'}/> )
       : (<Statistics 
             title={'Statistics'}
-            {...feedbackOptions}
-            total={countTotalFeedback}
-            positivePercentage={countPositiveFeedbackPercentage}
+            {...feedback}
+            total={countTotalFeedback()}
+            positivePercentage={countPositiveFeedbackPercentage()}
           />)}
         </Section>
       </>

@@ -9,8 +9,8 @@ export const Statistics = ({ title, good, neutral, bad, total, positivePercentag
                 <li className={css.listItem}>Good: {good}</li>
                 <li className={css.listItem}>Neutral: {neutral}</li>
                 <li className={css.listItem}>Bad: {bad}</li>
-                <li className={css.listItem}>Total: {total()}</li>
-                <li className={css.listItem}>Positive feedback: {positivePercentage()}%</li>
+                <li className={css.listItem}>Total: {total}</li>
+                <li className={css.listItem}>Positive feedback: {positivePercentage}%</li>
             </ul>
         </>
     );
@@ -18,9 +18,9 @@ export const Statistics = ({ title, good, neutral, bad, total, positivePercentag
 
 
 Statistics.propTypes = {
-    positivePercentage: PropTypes.func.isRequired,
-    total: PropTypes.func.isRequired,
+    positivePercentage: PropTypes.number.isRequired,
+    total: PropTypes.number.isRequired,
     good: PropTypes.number.isRequired,
     neutral: PropTypes.number.isRequired,
     bad: PropTypes.number.isRequired,
-}
+};
