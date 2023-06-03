@@ -18,7 +18,6 @@ const App = () => {
     }));
   };
        
-  
   const countPositiveFeedbackPercentage = () => {
     const totalFeedback = countTotalFeedback();
     return parseInt((feedback.good / totalFeedback) * 100);
